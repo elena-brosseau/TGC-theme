@@ -1,0 +1,51 @@
+
+<div class="product-feature">
+    {% render 'product-preview' | product: section.settings.product %}
+    <a href="./collections/"><button><h2>SHOP ALL</h2></button></a>
+</div>
+
+<style>
+
+.product-feature {
+    background-color: {{ section.settings.bg-color }};
+        border-top: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 15vw;
+    }
+
+@media screen and (min-width: 600px) {
+    
+    .product-feature {
+        flex-direction: row;
+        justify-content: space-around;
+    }   
+    
+    .product-feature .product-img {
+        width: 30vw;
+        max-width: 400px;
+    }
+}
+
+</style>
+
+
+{% schema %}
+    {
+        "name": "Featured Product",
+        "settings": [
+            {
+                "type": "product",
+                "id": "product",
+                "label": "Product"
+            },
+            {
+                "type": "color",
+                "id": "bg-color",
+                "label": "Background Color"
+            }
+        ]
+    }
+    {% endschema %}

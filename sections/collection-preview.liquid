@@ -1,0 +1,130 @@
+
+
+<div class="collection-preview">
+    <a href="{{ section.settings.collection.url }}"><button><h2>{{ section.settings.heading | upcase }}</h2></button></a>
+    <div 
+    {% if section.settings.num_of_products == "3" %}
+    class="products three"
+    {% else %}
+    class="products four"
+    {% endif %}
+    >
+        {% for product in section.settings.collection.products limit:section.settings.num_of_products %}
+            {% render 'product-preview' | product: product %}
+        {% endfor %}
+    </div>
+</div>
+
+
+<style>
+
+    h3, p {
+        color: {{ section.settings.text-color }}
+    }
+
+    .collection-preview {
+        background-color: {{ section.settings.bg-color }};
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 2vw;
+    }
+    
+    .collection-preview button {
+        width: fit-content;
+        height: fit-content;
+        margin: 30px 0 50px;
+    }
+    
+    .collection-preview h2 {
+        text-align: center;
+    }
+    
+    .products {
+        width: 90%;
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+
+    @media screen and (min-width: 700px) {
+    
+        .products.three {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .products.four {
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1100px;
+        }
+
+        .product {
+            align-self: flex-start;
+            justify-self: center;
+            width: 18vw;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .product-img {
+            max-width: 200px;
+        }
+
+        .products.three .product-img {
+            width: 20vw;
+        }
+    
+        .products.four .product-img {
+            width: 15vw;
+        }
+
+}
+
+</style>
+
+
+{% schema %}
+{
+    "name": "Collection Preview",
+    "settings": [
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "radio",
+            "id": "num_of_products",
+            "label": "Number of Products",
+            "options": [
+                {
+                "value": "3",
+                "label": "Three"
+                },
+                {
+                "value": "4",
+                "label": "Four"
+                }
+            ]
+        },
+        {
+            "type": "color",
+            "id": "text-color",
+            "label": "Text Color"
+        },
+        {
+            "type": "color",
+            "id": "bg-color",
+            "label": "Background Color"
+        }
+    ]
+}
+{% endschema %}

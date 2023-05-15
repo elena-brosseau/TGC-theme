@@ -1,0 +1,53 @@
+<div class="form">
+    <h2>Send me a message!</h2>
+    {% form 'contact' %}
+        {{ form.errors | default_errors }}
+      
+        <div class="name">
+          <input type="text" name="contact[name]" id="name" placeholder="Name"/>
+        </div>
+    
+        <div class="email">
+          <input type="email" name="contact[email]" id="email" placeholder="Email"/>
+        </div>
+      
+        <div class="message">
+          <textarea name="contact[body]" id="message" placeholder="Message"></textarea>
+        </div>
+      
+        <div class="submit">
+          <input type="submit" value="Send" />
+        </div>
+      {% endform %}
+</div>
+
+
+
+<style>
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 55px;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+input, textarea {
+    width: 85vw;
+    max-width: 300px;
+    margin: 5px 0;
+    padding: 8px 10px;
+}
+
+textarea {
+    height: 150px;
+}
+
+</style>
+
+  

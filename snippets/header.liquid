@@ -1,0 +1,216 @@
+<header>
+    <div id="header-top">
+            {% render 'social' %}
+        <img src="https://img.icons8.com/ios-filled/100/null/menu--v3.png" id="menu"/>
+        <a id="cart" href="{{ routes.cart_url }}">
+            <img src="https://img.icons8.com/windows/96/null/shopping-cart.png"/>
+            {% if cart.empty? == false %}
+                <p>{{ cart.item_count }}</p>
+            {% endif %}          
+        </a>
+    </div>
+    {% if settings.logo %}
+        <img src="{{ settings.logo | image_url}}" alt="" id="logo">
+    {% else %}
+        <h1>LOGO</h1>
+    {% endif %}
+    <nav>
+        <ul>
+            {% for link in linklists.main-menu.links -%}
+            <li>{{ link.title | upcase | link_to: link.url }}</li>
+            {%- endfor %}
+        </ul>
+    </nav>  
+</header>
+
+
+
+<style>
+
+    header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 30px;
+        border-bottom: 1px solid black;
+    }
+    
+    #header-top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        position: absolute;
+    }
+    
+    .social {
+        align-items: center;
+        list-style: none;
+        position: absolute;
+        bottom: 100px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 10;
+        margin: 0 auto;
+        display: none;
+    }
+    
+    .social li {
+        margin: 10px;
+    }
+
+    #menu {
+        height: 35px;
+        margin: 10px;
+        z-index: 10;
+        cursor: pointer;
+    }
+    
+    #cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-right: 10px;
+        z-index: 10;
+    }
+    
+    #cart img {
+        height: 50px;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    
+    #cart p {
+        font-size: 12px;
+        color: white;
+        background-color: black;
+        padding: 2px 8px;
+        border-radius: 100px;
+        position: absolute;
+        top: 4px;
+        right: -2px;
+    }
+    
+    h1 {
+        text-align: center;
+        margin: 0;
+        margin-top: 50px;
+    }
+
+    #logo {
+        height: 100px;
+        margin-top: 30px;
+    }
+    
+    nav {
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        position: fixed;
+        display: none;
+        justify-content: center;
+        z-index: 9;
+    }
+    
+    nav ul {
+        width: fit-content;
+        height: 55vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        list-style: none;
+        padding: 50px 60px 30px;
+        position: relative;
+        top: 10vh;
+    }
+    
+    nav ul li {
+        margin: 0 4vw;
+        text-align: center;
+    }
+
+
+
+@media screen and (min-width: 800px) {
+
+    
+    header {
+        padding-bottom: 0;
+        border-bottom: 1px solid black;
+    }
+
+    h1 {
+        position: static;
+    }
+
+    .social {
+        position: static;
+        margin: 0;
+        display: flex;
+        transform: translate(0);
+    }
+
+    #menu {
+        display: none;
+    }
+
+    nav {
+        background-color: transparent;
+        width: 100%;
+        height: fit-content;
+        position: static;
+        display: flex !important;
+        justify-content: center;
+    }
+
+    nav ul {
+        flex-direction: row;
+        height: fit-content;
+        justify-content: center;
+        position: static;
+    }
+    
+    nav ul li {
+        text-align: start;
+    }
+    
+}
+
+
+</style>
+
+<script>
+
+    const menu = document.querySelector('#menu'),
+          header = document.querySelector('header'),
+          body = document.querySelector('body'),
+          nav = document.querySelector('nav'),
+          social = document.querySelector('.social');
+
+
+    let open = false;
+
+    menu.onclick = () => {
+
+        if (open == false) {
+            menu.src = 'https://img.icons8.com/material-rounded/96/null/delete-sign.png';
+            menu.style.transform = 'scale(1.1)'
+            body.style.overflow = 'hidden';
+            nav.style.display = 'flex';
+            social.style.display = 'flex';
+            open = true;
+        } else {
+            menu.src = 'https://img.icons8.com/ios-filled/100/null/menu--v3.png';
+            menu.style.transform = 'scale(1)'
+            body.style.overflow = 'auto';
+            nav.style.display = 'none';
+            social.style.display = 'flex';
+            open = false;
+        }
+    }
+
+</script>

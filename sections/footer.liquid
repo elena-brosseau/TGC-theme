@@ -1,0 +1,142 @@
+
+<footer>
+    <div class="footer-left">
+        <div class="mission-statement">
+            <p class="shop-name">THE GØLDEN CANVA$</p>
+            <p>{{ section.settings.statement }}</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: '/' }}</p>
+            <p>{{ powered_by_link }}</p>
+            <p>Icons by <a href="https://icons8.com">icons8</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <div class="top-right">
+            <ul class="menu">
+                {% for link in linklists.main-menu.links -%}
+                <li>{{ link.title | upcase | link_to: link.url }}</li>
+                {%- endfor %}
+            </ul>
+            {% render 'social' %}
+        </div>
+        <ul class="payment-methods">
+            {%- for type in shop.enabled_payment_types -%}
+              <li>
+                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+              </li>
+            {%- endfor -%}
+          </ul>
+    </div>
+</footer>
+
+
+<style>
+
+footer {
+    border-top: 1px solid black;
+    height: 350px;
+    margin-top: 150px;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left {
+    width: 90%;
+    min-width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mission-statement p {
+    line-height: 1.5;
+}
+
+.shop-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.top-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.payment-methods, footer .menu {
+    display: none;
+    list-style: none;
+}
+
+
+footer .menu {
+    flex-direction: column;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+footer .social {
+    display: none;
+}
+
+.payment-methods li, .menu li {
+    margin: 10px;
+}
+
+
+@media screen and (min-width: 750px) {
+
+    .footer-left {
+        width: 30vw;
+        min-width: 300px;
+    }
+
+    footer .menu, .payment-methods {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+
+    .footer-right {
+        flex-direction: column;
+    }
+
+    footer .menu {
+        flex-direction: row;
+    }
+
+    footer .social {
+        display: flex;
+    }
+}
+
+</style>
+
+
+{% schema %}
+
+{
+    "name": "Mision Statement",
+        "settings": [
+            {
+                "type": "textarea",
+                "id": "statement",
+                "label": "Mission Statement"
+            }
+        ]
+}
+
+{% endschema %}

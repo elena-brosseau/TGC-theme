@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Logo",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "Logo"
+            }
+        ]
+    },
+    {
+        "name": "Social Media",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Accounts"
+          },
+          {
+            "type": "text",
+            "id": "social-facebook-link",
+            "label": "Facebook",
+            "info": "https:\/\/www.facebook.com\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-twitter-link",
+            "label": "Twitter",
+            "info": "https:\/\/twitter.com\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-pinterest-link",
+            "label": "Pinterest",
+            "info": "https:\/\/www.pinterest.com\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-instagram-link",
+            "label": "Instagram",
+            "info": "https:\/\/instagram.com\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-youtube-link",
+            "label": "Youtube",
+            "info": "https:\/\/www.youtube.com\/user\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-vimeo-link",
+            "label": "Vimeo",
+            "info": "https:\/\/vimeo.com\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-tiktok-link",
+            "label": "TikTok",
+            "info": "https:\/\/shopify.tiktok.com"
+          },
+          {
+            "type": "text",
+            "id": "social-kickstarter-link",
+            "label": "Kickstarter",
+            "info": "https:\/\/www.kickstarter.com\/profile\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-medium-link",
+            "label": "Medium",
+            "info": "https:\/\/medium.com\/@shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-linkedin-link",
+            "label": "LinkedIn",
+            "info": "https:\/\/www.linkedin.com\/company\/shopify"
+          },
+          {
+            "type": "text",
+            "id": "social-email-link",
+            "label": "Email address",
+            "info": "info@pixelunion.net"
+          },
+          {
+            "type": "text",
+            "id": "social-rss-link",
+            "label": "RSS",
+            "info": "https:\/\/www.shopify.com\/content-services\/feeds\/ecommerce.atom"
+          },
+          {
+            "type": "header",
+            "content": "Sharing"
+          },
+          {
+            "type": "checkbox",
+            "id": "share-widget-facebook",
+            "label": "Share on Facebook"
+          },
+          {
+            "type": "checkbox",
+            "id": "share-widget-twitter",
+            "label": "Tweet on Twitter"
+          },
+          {
+            "type": "checkbox",
+            "id": "share-widget-pinterest",
+            "label": "Pin on Pinterest"
+          },
+          {
+            "type": "checkbox",
+            "id": "share-widget-fancy",
+            "label": "Add to Fancy"
+          },
+          {
+            "type": "checkbox",
+            "id": "share-widget-email",
+            "label": "Enable email"
+          }
+        ]
+      }
+]

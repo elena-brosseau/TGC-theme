@@ -1,0 +1,88 @@
+
+
+<div class="portfolio">
+    <h2>Portfolio</h2>
+    <div class="slideshow">
+        {% if blog.previous_article == nil %}
+            <a href="./nike-shoes">
+                <img src="https://img.icons8.com/material-rounded/96/null/chevron-left.png" class="left"/>
+            </a>
+        {% else %}
+            <a href="{{ blog.previous_article.url }}">
+                <img src="https://img.icons8.com/material-rounded/96/null/chevron-left.png" class="left"/>
+            </a>
+        {% endif %}
+            <div class="piece">
+                <img src="{{ article.image | image_url }}" alt="">
+                <div class="text">
+                    <h2 class="title">{{ article.title }}</h2>
+                    <p class="description">{{ article.content }}</p>
+                </div>
+            </div>
+        {% if blog.next_article == nil %}
+            <a href="./champagne-pop-art">
+                <img src="https://img.icons8.com/material-rounded/96/null/chevron-left.png" class="right"/>
+            </a>
+        {% else %}
+            <a href="{{ blog.next_article.url }}">
+                <img src="https://img.icons8.com/material-rounded/96/null/chevron-left.png" class="right"/>
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+
+
+<style>
+
+.slideshow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 55px auto 0;
+}
+
+.portfolio h2 {
+    margin: 30px auto;
+    text-align: center;
+}
+
+.portfolio a {
+    margin: 0 20px;
+    padding: 0;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio a img {
+    width: 30px;
+}
+
+.piece {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.piece img {
+    width: 60vw;
+    max-width: 500px;
+    border: 1px solid black;
+}
+
+.piece .text {
+    text-align: center;
+    width: 50vw;
+}
+
+.portfolio .right {
+    transform: rotate(180deg);
+}
+
+</style>

@@ -1,0 +1,228 @@
+
+    <main>
+        <div class="path">
+            <p>
+                <a href="../collections/">Collections</a> / 
+                <a href="{{ product.collections[0].url }}">{{ product.collections[0].title }}</a> / 
+                {{ product.title }}
+            </p>
+        </div>
+        <div class="content">
+            <div id="images">
+                <div class="img-wrapper">
+                    {% if product.available == false %}
+                        <p class="sold-out">SOLD OUT</p>
+                    {% endif %}
+                    <div id="main-img">
+                        <img src="{{ product.featured_image | image_url }}" />
+                    </div>
+                </div>
+                <div id="thumbs">
+                    {% if product.images.size > 1 %}
+                        {% for image in product.images %}
+                            <div class="thumb">
+                                <img src="{{ image | image_url }}" alt="">
+                            </div>
+                        {% endfor %}
+                    {% endif  %}
+                </div>
+            </div>
+            <div id="text">
+                <p id="company">{{ shop.name | upcase }}</p>
+                <h2>{{ product.title }}</h2>
+                <p id="description-text">{{ product.description }}</p>
+                {% form 'product', product %}
+                    {% if product.variants.size < 2 %}
+                        <h3 id="product-price">{{ product.price | money }}</h3>
+                        <input name="id" value="{{ product.variants.first.id }}" type="hidden" />
+                    {% else %}
+                        <select name="id" id="select-var">
+                            {% for variant in product.variants %}
+                                <option value="{{ variant.id  }}">
+                                    {{ variant.title }} --
+                                    {{ variant.price | money}}
+                                </option>
+                            {% endfor  %}
+                        </select>
+                    {% endif  %}
+                    <div id="submit-btn">
+                        <p>Qty:</p>
+                        <input name="quantity" type="number" value="1" id="select-qty">
+                        <button type="submit">Add to Cart</button>
+                    </div> 
+                {% endform  %}
+            </div>
+        </div>
+    </main>
+
+
+
+
+<style>
+
+main {
+    width: 60%;
+    min-width: 700px;
+    margin: 55px auto 0;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.path {
+    color: rgb(59, 59, 59);
+    margin-bottom: 50px;
+}
+
+.path a:hover {
+    text-decoration: underline;
+}
+
+
+#images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-wrapper {
+    position: relative;
+}
+
+.sold-out {
+    position: absolute;
+    top: -10px;
+    right: 40px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5px 10px;
+    border-radius: 200px;
+}
+
+#main-img {
+    width: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#main-img img {
+    width: 100%;
+}
+
+#thumbs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 310px;
+}
+
+.thumb {
+    width: 60px;
+    height: 60px;
+    border: 2px solid black;
+    margin: 30px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.thumb img {
+    width: 100%;
+}
+
+#text {
+    margin-left: 4vw;
+    margin-top: 2%;
+}
+
+#text h2, #text h3 {
+    margin: 20px 0;
+}
+
+#select-var {
+    font-size: 16px;
+    padding: 3px 15px 3px 5px;
+    margin-top: 20px;
+}
+
+#submit-btn {
+    display: flex;
+    align-items: center;
+    margin: 50px 0;
+}
+
+#select-qty {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 5px 10px 15px;
+    border: 2px solid black;
+    width: 70px;
+    height: fit-content;
+}
+
+#submit-btn p {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: white;
+    padding: 10px 30px;
+    border: 2px solid black;
+    font-size: 18px;
+    margin: 0 10px;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    main {
+        width: 80%;
+        min-width: 0;
+        margin: 75px auto 0;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .path {
+        display: none;
+    }
+
+    #main-img {
+        width: 80vw;
+        max-width: 400px;
+        height: 80vw;
+        max-height: 400px;
+    }
+
+    #text {
+        margin: 50px 0;
+    }
+}
+
+
+</style>
+
+
+<script>
+
+const mainImg = document.querySelector('#main-img img'),
+      thumbs = Array.from(document.querySelectorAll('.thumb img'));
+
+thumbs.forEach(thumb => {
+    thumb.onclick = () => {
+        mainImg.src = thumb.src;
+    }
+})
+
+
+</script>

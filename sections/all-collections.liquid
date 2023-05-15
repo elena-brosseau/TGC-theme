@@ -1,0 +1,98 @@
+
+
+<div class="grid mobile">
+    {% for collection in section.settings.collection_list %}
+            <a href="{{ collection.url }}"><button><h2>{{ collection.title }}</h2></button></a>
+            {% for product in collection.products limit:1 %}
+                {% render 'product-preview' | product: product %}
+            {% endfor %}
+    {% endfor %}
+</div>
+<div class="grid desktop">
+    {% for collection in section.settings.collection_list %}
+            <a href="{{ collection.url }}" class="title"><button><h2>{{ collection.title }}</h2></button></a>
+            {% for product in collection.products limit:4 %}
+                {% render 'product-preview' | product: product %}
+            {% endfor %}
+    {% endfor %}
+</div>
+
+
+
+
+<style>
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    margin: 0 auto;
+}
+
+a {
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+.grid.desktop {
+    display: none;
+}
+
+.product {
+    padding-bottom: 80px;
+    justify-content: start;
+}
+
+.product-img {
+    width: 60vw;
+}
+
+
+@media screen and (min-width: 700px) {
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+        width: 90%;
+        max-width: 1100px;
+    }
+
+    .title {
+        grid-column: span 4;
+    }
+
+    .grid.desktop {
+        display: grid;
+    }
+
+    .grid.mobile {
+        display: none;
+    }
+
+    .product-img {
+        width: 15vw;
+        max-width: 200px;
+    }
+}
+
+</style>
+
+
+
+
+{% schema %}
+
+{
+        "name": "Collections",
+        "settings": [
+            {
+            "type": "collection_list",
+            "id": "collection_list",
+            "label": "Collections"
+            }
+        ]
+}
+ 
+{% endschema %}

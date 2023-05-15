@@ -1,0 +1,51 @@
+<ul class="social">
+  {%- if settings.social-facebook-link != blank -%}
+    {% render 'social-link', id: 'facebook', title: 'Facebook', url: settings.social-facebook-link %}
+  {%- endif -%}
+
+  {%- if settings.social-twitter-link != blank -%}
+    {% render 'social-link', id: 'twitter', title: 'Twitter', url: settings.social-twitter-link %}
+  {%- endif -%}
+
+  {%- if settings.social-pinterest-link != blank -%}
+    {% render 'social-link', id: 'pinterest', title: 'Pinterest', url: settings.social-pinterest-link %}
+  {%- endif -%}
+
+  {%- if settings.social-instagram-link != blank -%}
+    {% render 'social-link', id: 'instagram', title: 'Instagram', url: settings.social-instagram-link %}
+  {%- endif -%}
+
+  {%- if settings.social-youtube-link != blank -%}
+    {% render 'social-link', id: 'youtube', title: 'YouTube', url: settings.social-youtube-link %}
+  {%- endif -%}
+
+  {%- if settings.social-vimeo-link != blank -%}
+    {% render 'social-link', id: 'vimeo', title: 'Vimeo', url: settings.social-vimeo-link %}
+  {%- endif -%}
+
+  {%- if settings.social-tiktok-link != blank -%}
+    {% render 'social-link', id: 'tiktok', title: 'TikTok', url: settings.social-tiktok-link %}
+  {%- endif -%}
+
+  {%- if settings.social-kickstarter-link != blank -%}
+    {% render 'social-link', id: 'kickstarter', title: 'Kickstarter', url: settings.social-kickstarter-link %}
+  {%- endif -%}
+
+  {%- if settings.social-medium-link != blank -%}
+    {% render 'social-link', id: 'medium', title: 'Medium', url: settings.social-medium-link %}
+  {%- endif -%}
+
+  {%- if settings.social-linkedin-link != blank -%}
+    {% render 'social-link', id: 'linkedin', title: 'LinkedIn', url: settings.social-linkedin-link %}
+  {%- endif -%}
+
+  {%- if settings.social-email-link != blank -%}
+    {% assign url = 'mailto:' | append: settings.social-email-link %}
+    {% capture email_title %}{{ 'general.social.email' | t }}{% endcapture %}
+    {% render 'social-link', id: 'email', title: email_title, url: url %}
+  {%- endif -%}
+
+  {%- if settings.social-rss-link != blank -%}
+    {% render 'social-link', id: 'rss', title: 'RSS', url: settings.social-rss %}
+  {%- endif -%}
+</ul>

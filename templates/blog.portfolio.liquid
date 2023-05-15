@@ -1,0 +1,68 @@
+<div class="portfolio">
+    <div class="container">
+        {% for article in blog.articles %}
+            <a href="{{ article.url }}"><img src="{{ article.image | image_url }}" alt=""></a>
+        {% endfor %}
+    </div>
+</div>
+
+
+<style>
+
+.portfolio {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.portfolio .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: start;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.portfolio img {
+    width: 60vw;
+    margin: 10px;
+}
+
+@media screen and (min-width: 600px) {
+
+    .portfolio .container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio img {
+        width: 30vw;
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+
+    .portfolio .container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .portfolio img {
+        width: 20vw;
+    }
+    
+}
+
+@media screen and (min-width: 1100px) {
+
+    .portfolio .container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .portfolio img {
+        width: 15vw;
+    }
+    
+}
+
+</style>

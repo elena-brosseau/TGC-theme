@@ -1,0 +1,279 @@
+
+
+<main>
+    {% if cart.empty? %}
+        <p id="empty-msg">Your cart is empty.</p>
+    {% else %}
+        {% form 'cart', cart %}
+            <div id="grid">
+                <p class="your-cart">Your Cart</p>
+                <a href="/collections" class="keep"><p>Keep Shopping</p></a>
+                <div></div>
+                <p class="th product">Product</p>
+                <p class="th">Price</p>
+                <p class="th">Quantity</p>
+                <p class="th total">Total</p>
+                <div></div>
+                {% for item in cart.items %}
+                    <h2 class="mobile">{{ item.title }}</h2>
+                    <a href="{{ item.url_to_remove }}" class="delete mobile"><img src="https://img.icons8.com/material-outlined/96/null/delete-trash.png"/></a>
+                    <div class="img-container">
+                        <img src="{{ item.image | image_url }}" alt="item image">
+                    </div>
+                    <h2 class="desktop">{{ item.title }}</h2>
+                    <p class="mobile">Price:</p>
+                    <p class="mobile-end">{{ item.price | money }}</p>
+                    <p class="mobile">Qty:</p>
+                    <div class="qty-input mobile-end">
+                        <input type="number" name="updates[]" value="{{ item.quantity }}" id="desktop-qty"/>
+                        <button type="submit" name="update"><img src="https://img.icons8.com/glyph-neue/128/null/checked.png"/></button>
+                    </div>
+                    <p class="mobile">Total:</p>
+                    <p class="total">{{ item.original_line_price | money }}</p>
+                    <a href="{{ item.url_to_remove }}" class="delete desktop"><img src="https://img.icons8.com/material-outlined/96/null/delete-trash.png"/></a>
+                    <div class="item-buffer mobile"></div>
+                {% endfor  %}
+                <div class="desktop total-buffer left"></div>
+                <p class="subtotal left">Subtotal:</p>
+                <p class="subtotal total">{{ cart.total_price | money }}</p>
+                <div class="desktop total-buffer right"></div>
+                <div class="desktop taxes-buffer left"></div>
+                <p class="taxes">taxes and shipping will be calculated at checkout</p>
+                <div class="taxes-buffer right"></div>
+                <div class="desktop button-buffer left"></div>
+                <button type="submit" name="checkout" id="checkout-btn"><p>Checkout</p></button>
+            </div>
+        {% endform %}
+    {% endif %}
+</main>
+
+
+<style>
+
+#empty-msg {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 2fr .8fr .5fr;
+    grid-auto-rows: auto;
+    gap: 30px 0;
+    width: 75%;
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+#grid > * {
+    display: flex;
+    align-items: center;
+}
+
+.th {
+    font-weight: bold;
+}
+
+.desktop, .th {
+    display: none !important;
+}
+
+.your-cart {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.keep {
+    grid-column: span 2;
+    justify-self: end;
+    color: rgb(23, 104, 158);
+    text-decoration: underline;
+}
+
+.total {
+    justify-self: end;
+}
+
+.img-container {
+    grid-row: span 3;
+    width: 30vw;
+    max-width: 200px;
+    height: 30vw;
+    max-height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container img {
+    height: 100%;
+}
+
+h2 {
+    grid-column: span 2;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.qty-input {
+    position: relative;
+    z-index: 1;
+}
+
+input {
+    padding: 10px 5px 10px 10px;
+    width: 70px;
+}
+
+.qty-input button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    position: absolute;
+    right: -35px;
+}
+
+.qty-input button.open {
+    display: block;
+}
+
+.qty-input img {
+    height: 25px;
+    margin-left: 5px;
+}
+
+.delete {
+    justify-self: end;
+}
+
+.delete img {
+    height: 25px;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.item-buffer {
+    grid-column: span 3;
+    height: 10px;
+}
+
+.mobile-end {
+    justify-self: end;
+}
+
+.subtotal {
+    font-weight: bold;
+    font-size: 24px;
+    padding-top: 25px;
+    width: 100%;
+    border-top: 2px solid black;
+}
+
+.subtotal.left {
+    grid-column: span 2;
+}
+
+.total-buffer.left {
+    grid-column: span 2;
+}
+
+.taxes-buffer.left {
+    grid-column: span 2;
+}
+
+.taxes-buffer.right {
+    grid-column: span 2;
+}
+
+.button-buffer.left {
+    grid-column: span 3;
+}
+
+#checkout-btn {
+    grid-column: span 3; 
+    margin: 30px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#checkout-btn p {
+    margin: 10px auto;
+}
+
+
+
+@media screen and (min-width: 800px) {
+
+    .desktop, .th {
+        display: flex !important;
+    }
+
+    .mobile {
+        display: none !important;
+    }
+
+    #grid {
+        grid-template-columns: 100px 2fr 1fr 1fr .5fr .5fr;
+        max-width: 900px;
+    }
+
+    .your-cart {
+        grid-column: span 3;
+    }
+
+    .product {
+        grid-column: span 2;
+    }
+
+    h2 {
+        grid-column: span 1;
+        margin: 0 6vw 0 2vw;
+    }
+
+    .img-container {
+        grid-row: span 1;
+        width: 100px;
+        min-width: 100px;
+        height: 100px;
+    }
+
+    .mobile-end {
+        justify-self: start;
+    }
+
+    .taxes {
+        grid-column: span 2;
+    }
+
+    #checkout-btn {
+        grid-column: span 2;
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    #checkout-btn p {
+        margin: 5px auto;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+    const qtys = Array.from(document.querySelectorAll('.qty-input input')),
+          checks = Array.from(document.querySelectorAll('.qty-input button'));
+
+    for (let i = 0; i < qtys.length; i++) {
+        qtys[i].onchange = function() {
+        checks[i].classList.add('open');
+        }
+    }
+
+</script>

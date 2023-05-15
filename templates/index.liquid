@@ -1,0 +1,52 @@
+
+<main>
+    <div id="banner">
+        <h2>BANNER</h2>
+        <a href="./collections/">
+            <button>SHOP ALL</button>
+        </a>
+    </div>
+    {% section 'collection-preview' %}
+    {% section 'featured-product' %}
+    <div id="about">
+        <h2>ABOUT THE ARTIST</h2>
+        <a href="./pages/press/">
+            <button>PRESS</button>
+        </a>
+    </div>
+    <div id="newsletter">
+        {% render 'newsletter' %}
+    </div>
+</main>
+
+
+
+<style>
+
+    #banner {
+        border-bottom: 2px solid black;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #about {
+        border-top: 2px solid black;
+        height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #newsletter {
+        border-top: 2px solid black;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+</style>

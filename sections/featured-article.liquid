@@ -22,14 +22,14 @@
 <style>
 
 .featured-article {
-    padding-bottom: 30px;
+    padding-bottom: 60px;
     margin: 30px auto;
     border-bottom: 2px solid black;
     margin-bottom: 60px;
 }
 
 .featured-article-text {
-    margin: 5vw 0;
+    margin-top: 5vw;
 }
 
 .featured-article a:hover {
@@ -61,7 +61,21 @@
     background-size: cover;
 }
 
+@media screen and (min-width: 600px) {
 
+    .featured-article {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .featured-article-img {
+        width: 85%;
+    }
+
+    .featured-article h1, .featured-article p {
+        margin-left: 15%;
+    }
+}
 
 </style>
 

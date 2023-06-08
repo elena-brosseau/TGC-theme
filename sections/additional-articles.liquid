@@ -1,0 +1,132 @@
+
+{% for block in section.blocks %}
+
+    <div class="press-article">
+        <div>
+            {% if block.settings.title != blank %}
+                {% if block.settings.link != blank %}
+                    <a href={{ block.settings.link }} target="_blank">
+                        <p class="press-article-headline">{{ block.settings.title }}</p>
+                    </a>
+                {% else %} 
+                    <p class="press-article-headline">{{ block.settings.title }}</p>
+                {% endif %}
+            {% else %}
+                <p class="press-article-headline">Article Headline</p>
+            {% endif %}
+            {% if block.settings.blurb != blank %}
+                <p class="press-article-blurb">{{ block.settings.blurb }}</p>
+            {% else %}
+                <p class="press-article-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            {% endif %}
+        </div>
+        <div class="press-article-img-container">
+            {% if block.settings.image != blank %} 
+                <img src="{{ block.settings.image | image_url }}" alt=""/>
+            {% else %}
+                <img/ src="{{ '../assets/gradient.jpeg' | asset_url}}" alt="">
+            {% endif %}
+        </div>
+    </div>
+
+{% endfor %}
+
+
+
+
+<style>
+
+.press-article {
+    margin: 30px auto;
+    padding-bottom: 30px;
+}
+
+.press-article p {
+    margin-bottom: 10px;
+}
+
+.press-article-headline {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.press-article-blurb {
+    width: clamp(10px, 100%, 500px);
+    line-height: 1.5;
+}
+
+.press-article-img-container {
+    height: 40vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.press-article img {
+    width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+
+    .press-article {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .press-article-img-container {
+        height: 200px;
+        max-width: 400px;
+        margin: 0;
+    }
+
+    .press-article-blurb {
+        width: clamp(10px, 40vw, 500px);
+        margin: 0 30px 0 0;
+    }
+}
+
+</style>
+
+
+
+{%  schema  %} 
+
+    {
+        "name": "Additional Articles",
+            "settings": [
+
+            ],
+            "blocks": [
+                {
+                    "type": "text",
+                    "name": "Additional Article",
+                    "settings": [
+                        {
+                            "type": "image_picker",
+                            "id": "image",
+                            "label": "Display Image"
+                        },
+                        {
+                            "type": "text",
+                            "id": "title",
+                            "label": "Title"
+                        },
+                        {
+                            "type": "text",
+                            "id": "blurb",
+                            "label": "Blurb"
+                        },
+                        {
+                            "type": "text",
+                            "id": "link",
+                            "label": "Link"
+                        }
+                    ]
+                }
+            ]
+    }
+    
+    {% endschema %}

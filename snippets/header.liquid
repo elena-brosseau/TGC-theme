@@ -10,12 +10,21 @@
         </a>
     </div>
     {% if settings.logo %}
-        <img src="{{ settings.logo | image_url}}" alt="" id="logo"/>
+        <a href="{{ shop.url }}"><img src="{{ settings.logo | image_url}}" alt="" id="logo"/></a>
     {% else %}
-        <h1>LOGO</h1>
+        <a href="{{ shop.url }}"><h1>LOGO</h1></a>
     {% endif %}
     <nav>
         <ul>
+            <li class="{% if link.active %} active-link {% endif %}">
+                <p class="collections-tab">COLLECTIONS</p>
+                <div class="collections-dropdown">
+                    <a href="/pages/originals"><p>ORIGINALS</p></a>
+                    <a href="/pages/prints"><p>PRINTS</p></a>
+                    <a href="/pages/accessories"><p>ACCESSORIES</p></a>
+                    <a href="/collections"><p>ALL</p></a>
+                </div>
+            </li>
             {% for link in linklists.main-menu.links -%}
             <li class="{% if link.active %} active-link {% endif %}">{{ link.title | upcase | link_to: link.url }}</li>
             {%- endfor %}
@@ -133,6 +142,29 @@
         padding-bottom: 30px;
     }
 
+    .collections-tab {
+        cursor: pointer;
+    }
+    
+    .collections-dropdown {
+        display: none;
+        position: absolute;
+        background-color: white;
+        z-index: 5;
+        margin-top: 10px;
+        border: 1px solid black;
+        box-sizing: content-box;
+    }
+
+    .collections-dropdown p {
+        padding: 8px 10px;
+        cursor: pointer;
+    }
+
+    .collections-dropdown p:hover {
+        background-color: black;
+        color: white;
+    } 
 
 
 @media screen and (min-width: 800px) {
@@ -180,7 +212,7 @@
     nav ul li.active-link {
         border-bottom: 4px solid black;
     }
-    
+
 }
 
 
@@ -188,6 +220,7 @@
 
 <script>
 
+    // mobile menu
     const menu = document.querySelector('#menu'),
           header = document.querySelector('header'),
           body = document.querySelector('body'),
@@ -215,5 +248,24 @@
             open = false;
         }
     }
+
+    // collections dropdown
+    const collectionsTab = document.querySelector('.collections-tab'),
+          collectionOpts = document.querySelector('.collections-dropdown')
+
+    let collections = false;
+
+    collectionsTab.onclick = () => {
+
+        if (collections === false) {
+            collectionOpts.style.display = 'block'
+            collections = true;
+        } else {
+            collectionOpts.style.display = 'none'
+            collections = false;
+        }
+
+    }
+
 
 </script>

@@ -1,22 +1,22 @@
 
 <div class="product-feature">
-    {% render 'product-preview' | product: section.settings.product %}
     <a href="./collections/"><button><h2>SHOP ALL</h2></button></a>
+    {% render 'product-preview' | product: section.settings.product %}
 </div>
 
 <style>
 
 .product-feature {
     background-color: {{ section.settings.bg-color }};
-        border-top: 2px solid black;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 50px 15vw;
-        background-image: url({{'../assets/pink-gradient.jpeg' | asset_url}});
+        background-image: url({{'../assets/gradient.jpeg' | asset_url}});
         background-size: cover;
         background-attachment: fixed;
+        margin-top: 50px;
     }
 
 @media screen and (min-width: 600px) {

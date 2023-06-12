@@ -38,13 +38,19 @@
             {% endif %}
         </div>
     </div>
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
 </div>
 
 <style>
 
 #banner {
     height: calc(100vh - 185px);
+    width: 100vw;
     min-height: 500px;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .banner-content {
@@ -89,6 +95,31 @@
     font-size: 22px;
     width: 80%;
     margin-left: 30px;
+}
+
+.cloud {
+    height: 100px;
+    width: 600px;
+    background-image: url({{'../assets/gradient.jpeg' | asset_url}});
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    border-radius: 15px;
+}
+
+.cloud-one {
+    top: 50px;
+    left: 1100px;
+}
+
+.cloud-two {
+    top: 350px;
+    right: 1150px;
+}
+
+.cloud-three {
+    top: 75%;
+    left: 1300px;
 }
 
 </style>

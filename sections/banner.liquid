@@ -1,12 +1,8 @@
 
 <div id="banner">
     <div class="banner-content">
-        <div>
-            {% if section.settings.image != blank %}
-                {{ section.settings.image | image_url }}
-            {% else %}
-                <img src="{{'../assets/banner-pic.jpg' | asset_url }}"/>
-            {% endif %}
+        <div class="banner-img">
+
         </div>
         <div class="banner-text">
             {% if section.settings.headline != blank %}
@@ -17,7 +13,7 @@
             {% if section.settings.blurb != blank %}
                 <p>{{ section.settings.blurb }}</p>
             {% else %}
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             {% endif %}
             {% if section.settings.link != blank %}
                 <a href="{{ section.settings.link }}">
@@ -43,54 +39,86 @@
 <style>
 
 #banner {
-    height: calc(100vh - 185px);
-    min-height: 500px;
+    height: 110vh;
 }
 
 .banner-content {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.banner-content img {
-    height: 80%;
-    border: 2px solid black;
-    box-shadow: 5px 5px black;
-    position: relative;
-    left: clamp(10px, 10%, 100px);
+.banner-img {
+    width: 100%;
+    height: calc(100vh - 100px);
+    background-image: {% if section.settings.image != blank %}
+                            url({{ section.settings.image.src | img_url: 'master' }})
+                        {% else %}
+                            url({{'../assets/banner-pic.jpg' | asset_url }})
+                        {% endif %};
+    background-size: cover;
+    background-position-y: 25%;
 }
 
 .banner-text {
-    width: clamp(10px, 40%, 400px);
+    width: 90%;
+    height: fit-content;
+    background-image: url({{'../assets/gradient.jpeg' | asset_url }});
+    background-size: cover;
+    background-position: 75% 75%;
+    padding: 10%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    border-radius: 15px;
+    margin: 0 auto;
     position: relative;
-    left: clamp(10px, 10%, 50px);
+    bottom: 30vh;
 }
 
 .banner-text h2 {
     font-size: clamp(40px, 7vw, 80px);
     font-style: italic;
     margin-bottom: 20px;
-    padding: 20px 50px;
-    border-radius: 15px;
-    background-image: url({{'../assets/gradient.jpeg' | asset_url}});
-    background-size: cover;
-    background-attachment: fixed;
-    position: relative;
-    right: 100px;
 }
 
 .banner-text p {
-    font-size: 22px;
-    width: 80%;
-    margin-left: 30px;
+    font-size: 18px;
+    line-height: 1.75;
+    max-width: 400px;
 }
 
+.banner-text button {
+    margin-left: 0;
+}
+
+@media screen and (min-width: 800px) {
+
+    #banner {
+        height: calc(100vh - 185px);
+        min-height: 500px;
+        margin-bottom: 50px;
+    }
+
+    .banner-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .banner-img {
+        width: 50%;
+        height: 100%
+    }
+
+    .banner-text {
+        width: 50%;
+        height: 100%;
+        padding: 0 5%;
+        border-radius: 0;position: static;
+    }
+
+}
 </style>
 
 

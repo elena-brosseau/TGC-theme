@@ -35,8 +35,8 @@
 
 footer {
     border-top: 1px solid black;
-    height: 350px;
-    padding: 30px 50px;
+    height: fit-content;
+    padding: 30px 8%;
     display: flex;
     justify-content: space-between;
 }
@@ -44,10 +44,13 @@ footer {
 .footer-left {
     width: 90%;
     min-width: 200px;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.mission-statement {
+    margin-bottom: 20px;
 }
 
 .mission-statement p {
@@ -87,7 +90,12 @@ footer .menu {
 }
 
 footer .social {
-    display: none;
+    position: static;
+    margin: 0 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    transform: translate(0);
 }
 
 .payment-methods li, .menu li {
@@ -97,6 +105,11 @@ footer .social {
 
 @media screen and (min-width: 750px) {
 
+    footer {
+        padding: 30px 50px;
+        height: 350px;
+    }
+
     .footer-left {
         width: 30vw;
         min-width: 300px;
@@ -104,6 +117,12 @@ footer .social {
 
     footer .menu, .payment-methods {
         display: flex;
+    }
+
+    footer .social {
+        position: static;
+        flex-direction: row;
+        flex-wrap: nowrap;
     }
 }
 

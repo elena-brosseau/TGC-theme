@@ -3,13 +3,7 @@
     {% section 'banner' %}
     {% section 'collection-preview' %}
     {% section 'featured-product' %}
-    <div id="about">
-        <div id="about-link"></div>
-        <h2>ABOUT THE ARTIST</h2>
-        <a href="./pages/press/">
-            <button>PRESS</button>
-        </a>
-    </div>
+    {% section 'about-the-artist' %}
     <div id="newsletter">
         {% render 'newsletter' %}
     </div>
@@ -20,17 +14,9 @@
 <style>
 
 
-    
-    #about {
-        border-top: 2px solid black;
-        height: 700px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+
     
     #newsletter {
-        border-top: 2px solid black;
         height: 650px;
         display: flex;
         justify-content: center;
